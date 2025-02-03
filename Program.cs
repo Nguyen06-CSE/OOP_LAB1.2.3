@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -32,8 +33,7 @@ namespace LAB_1._2._3
         {
             Console.WriteLine("____________________MENU_____________________");
             Console.WriteLine("0.\tthoat khoi chuong trinh ");
-            Console.WriteLine("1.\tSắp xếp mảng theo thứ tự tăng dần.\r\n2.\tSắp xếp mảng theo thứ tự giảm dần.\r\n3.\tSắp xếp chỉ các phần tử lẻ theo thứ tự tăng dần, giữ nguyên vị trí các phần tử chẵn.\r\n4.\tTìm phần tử lớn thứ hai trong mảng.\r\n5.\tTìm phần tử nhỏ thứ hai trong mảng.\r\n6.\tTìm cặp phần tử có tổng bằng x.\r\n7.\tTìm phần tử có tổng của các chữ số lớn nhất.\r\n8.\tTìm giá trị lớn nhất nhưng không phải là phần tử cuối cùng.\r\n9.\tTìm tất cả các cặp phần tử có hiệu là số nguyên tố.\r\n10.\tXoá phần tử đầu tiên lớn hơn x.\r\n11.\tChèn phần tử x vào sao cho mảng vẫn tăng dần.\r\n12.\tChèn phần tử x vào đầu mảng.\r\n13.\tXoá tất cả các phần tử có giá trị lớn hơn x.\r\n14.\tXoá tất cả các số nguyên tố trong mảng.\r\n15.\tTìm vị trí đầu tiên của phần tử lớn nhất.\r\n16.\tTìm vị trí của phần tử nhỏ nhất cuối cùng.\r\n17.\tĐếm số lượng phần tử lớn hơn phần tử đứng trước nó.\r\n18.\tĐếm số lượng phần tử nhỏ hơn phần tử đứng sau nó.\r\n19.\tTìm phần tử có giá trị nhỏ nhất nhưng không phải số âm.\r\n20.\tĐếm số lần hoán đổi tối thiểu để sắp xếp mảng.\r\n21.\tTìm phần tử xuất hiện nhiều nhất trong mảng.\r\n22.\tSắp xếp mảng để phần tử lớn nhất nằm ở đầu và phần tử nhỏ nhất nằm cuối.\r\n23.\tXoá phần tử tại vị trí k.\r\n24.\tTìm tất cả các số chẵn liên tiếp có hiệu bằng d.\r\n25.\tTìm vị trí của phần tử nhỏ nhất trong một mảng tăng dần.\r\n26.\tKiểm tra xem hai mảng có chứa phần tử chung hay không.\r\n27.\tTách mảng thành hai mảng con: mảng chẵn và mảng lẻ.\r\n28.\tKiểm tra xem một mảng đã được sắp xếp chưa.\r\n29.\tTìm số chẵn nhỏ nhất lớn hơn một số cho trước.\r\n30.\tTìm phần tử xuất hiện ít nhất trong mảng.\r\n");
-
+            Console.WriteLine("1.\tĐảo ngược thứ tự các phần tử trong mảng.\r\n2.\tXoá tất cả các phần tử trùng nhau, giữ lại phần tử đầu tiên.\r\n3.\tTạo một mảng mới với các số chia hết cho 3.\r\n4.\tTính tổng lớn nhất của một dãy con liên tiếp.\r\n5.\tTìm số lượng các số liên tiếp có tổng bằng S.\r\n6.\tKiểm tra xem có tồn tại ba phần tử liên tiếp có tổng bằng x.\r\n7.\tĐếm số lần xuất hiện của từng phần tử trong mảng.\r\n8.\tTìm tất cả các dãy con có tổng bằng một số nguyên tố.\r\n9.\tTìm dãy con có độ dài lớn nhất chứa toàn số chẵn.\r\n10.\tTìm độ dài dãy tăng dài nhất.\r\n11.\tTìm dãy giảm dài nhất.\r\n12.\tĐếm số lần giá trị x xuất hiện liên tiếp trong mảng.\r\n13.\tTìm vị trí xuất hiện cuối cùng của một giá trị trong mảng.\r\n14.\tKiểm tra xem mảng có đối xứng không.\r\n15.\tNhân mỗi phần tử của mảng với số k.\r\n16.\tTìm giá trị gần nhất với x.\r\n17.\tĐếm số lượng cặp phần tử có tổng lớn hơn y.\r\n18.\tTạo một mảng mới là tổng của hai mảng cùng kích thước.\r\n19.\tTìm phần tử có khoảng cách lớn nhất với x.\r\n20.\tTách mảng thành các dãy con liên tiếp tăng dần.\r\n21.\tTìm dãy con có tổng nhỏ nhất.\r\n22.\tTìm tổng của các phần tử chia hết cho cả 3 và 5.\r\n23.\tXoá tất cả các số nhỏ hơn 0.\r\n24.\tTạo một mảng chứa các bình phương của các phần tử trong mảng ban đầu.\r\n25.\tTính tổng các phần tử có giá trị lớn hơn giá trị trung bình.\r\n26.\tTính khoảng cách lớn nhất giữa hai số 0 trong mảng.\r\n27.\tTìm phần tử lớn nhất ở vị trí lẻ.\r\n28.\tTìm phần tử nhỏ nhất ở vị trí chẵn.\r\n29.\tĐếm số lượng phần tử liên tiếp có giá trị bằng nhau.\r\n30.\tTạo mảng chứa tất cả các ước của các phần tử trong mảng ban đầu.\r\n");
         }
 
         static int ChonMenu(int soMenu)
@@ -61,122 +61,153 @@ namespace LAB_1._2._3
                     Console.WriteLine("Thoát khỏi chương trình");
                     break;
                 case 1:
-                    Xuat(ds);
+                    
+                    Xuat(DaoNguoc(ds));
                     break;
                 case 2:
+                    Xuat(XoaCacPTTrungNhau(ds));
                     break;
                 case 3:
+                    Xuat(MangChiaHetCho3(ds));
                     break;
                 case 4:
+                    Console.WriteLine("Tong lon nhat cua mot day con lien tiep la: " + TongLonNhatDayCon(ds));
                     break;
                 case 5:
-
+                    Console.Write("Nhap gia tri tong ban muon so sanh: ");
+                    x = int.Parse(Console.ReadLine());
+                    Console.WriteLine("so luong cac so lien tiep co tong bang " + x + " trong mang la: " + DemDayConCoTongBangS(ds, x));
                     break;
                 case 6:
-
+                    Console.Write("Nhap gia tri tong ban muon so sanh: ");
+                    x = int.Parse(Console.ReadLine());
+                    CoBaPhanTuLienTiepTongX(ds, x);
                     break;
                 case 7:
+                    XuatCap(DemSoLanXuatHien(ds));
                     break;
                 case 8:
 
+                    if (TimDayConCoTongNguyenTo(ds).Count != 0)
+                    {
+                        Xuat(TimDayConCoTongNguyenTo(ds));
+                    }
+                    else TimDayConCoTongNguyenTo(ds);
                     break;
                 case 9:
-
+                    Xuat(DayConToanChanDaiNhat(ds));
                     break;
                 case 10:
-
+                    Console.WriteLine("do dai day tang dai nhat la: " + DoDaiDayTangDaiNhat(ds));
 
                     break;
                 case 11:
-                    
-                    
+                    Console.WriteLine("do dai day giam dai nhat la: " + DoDaiDayGiamDaiNhat(ds));
+
                     break;
                 case 12:
-                    
+                    Console.Write("Nhap gia tri ban muon dem: ");
+                    x = int.Parse(Console.ReadLine());
+                    Console.WriteLine("so lan gia tri " + x + " xuat hien trong mang la: " + DemSoLanXuatHien(ds));
+
                     
                     break;
                 case 13:
-
+                    Console.Write("Nhap gia tri ban tim kiem vi tri cuoi cung trong mang: ");
+                    x = int.Parse(Console.ReadLine());
+                    Console.WriteLine("vi tri xuat hien cuoi cung cua gia tri " + x + " trong mang la: " + TimViTriCuoiCung(ds, x));
                     break;
                 case 14:
-                    
-                    
-                    
+                    if (LaMangDoiXung(ds)) Console.WriteLine("mang la mang doi xung nha!!!");
+                    else Console.WriteLine("mang ko phai la mang doi xung nha!!!");
+
                     break;
                 case 15:
-
+                    Console.Write("Nhap gia tri ban muon nhan voi moi phan tu trong mang: ");
+                    x = int.Parse(Console.ReadLine());
+                    Xuat(NhanMangVoiK(ds, x));
                     break;
                 case 16:
-                    
-                    
-                    
-                    
+                    Console.Write("Nhap gia tri x ban muon : ");
+                    x = int.Parse(Console.ReadLine());
+                    Console.WriteLine("gia tri gan voi " +  x + " trong mang la: " + TimGiaTriGanNhat(ds,x)); 
+
+
+
                     break;
                 case 17:
+                    Console.Write("Nhap gia tri tong ban muon : ");
+                    x = int.Parse(Console.ReadLine());
+                    Console.Write("so luong cap phan tu co gia tri lon hon " + x + " la: " + DemCapPhanTuTongLonHonY(ds,x));
 
-                    
-                    
-                    
                     break;
 
                 case 18:
-                    
-                    
-                    
+                    List<int> ds1 = new List<int>();
+                    List<int> ds2 = new List<int>();
+                    Console.WriteLine("nhap mang dau tien di");
+                    Nhap(ds1);
+                    Console.WriteLine("nhap mang thu hai di");
+                    Nhap(ds2);
+                    Console.WriteLine("mang sau khi tinh tong hai mang la");
+                    Xuat(TongHaiMang(ds1, ds2));
+
                     break;
                 case 19:
-                    
-                    
-                    
+                    Console.Write("Nhap gia tri de tim khoang cach ban muon : ");
+                    x = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Phan tu co khoang cach lon nhat voi " + x + " la phan tu" + TimPhanTuKhoangCachLonNhat(ds,x));
+
                     break;
                 case 20:
-                    
+                    XuatMangHaiChieu(TachMangThanhDayConTangDan(ds));
                     
                     break;
                 case 21:
-                    
+                    Xuat(TimDayConCoTongNhoNhat(ds));
                     
                     
                     break;
                 case 22:
-
+                    Console.WriteLine("tong phan tu chia het cho 3 va 5 trong mang la: " + TongPhanTuChiaHetCho3Va5(ds));
                     break;
                 case 23:
-
+                    Xuat(XoaSoNhoHon0(ds));
 
                     break;
                 case 24:
-                    
+                    Xuat(BinhPhuongMang(ds));
                     
                     
                     break;
                 case 25:
-                    
+                    Console.WriteLine("tong cac phan tu co gia tri lon hon trung binh la: " + TongLonHonTrungBinh(ds));                
                     
                     
                     break;
                 case 26:
-                    
+                    if (KhoangCachLonNhatGiuaHaiSo0(ds) != -1) Console.WriteLine("khoang cach lon nhat giua hai so 0 la: " + KhoangCachLonNhatGiuaHaiSo0(ds));
+                    else Console.WriteLine("mang ko co hai so 0");
                     
                     
                     
                     
                     break;
                 case 27:
-
+                    Console.WriteLine("phan tu lon nhat o vi tri le la: " + PhanTuLonNhatViTriLe(ds));
                     break;
                 case 28:
 
-
+                    Console.WriteLine("phan tu nho nhat o vi tri chan la: " + PhanTuNhoNhatViTriChan(ds));
 
                     break;
                 case 29:
-
+                    Console.WriteLine("so luong phan tu lien tiep co gia tri bang nhau la: " + DemSoLuongPhanTuLienTiepBangNhau(ds));
                     break;
 
 
                 case 30:
-
+                    Xuat(TimTatCaUocSo(ds));
                     break;
                 default:
                     break;
@@ -213,6 +244,26 @@ namespace LAB_1._2._3
             }
             Console.WriteLine();
         }
+
+        static void XuatMangHaiChieu(List<List<int>> ds)
+        {
+            foreach (var subSequence in ds)
+            {
+                Console.WriteLine(string.Join(", ", subSequence));
+            }
+            Console.WriteLine();
+        }
+
+
+        static void XuatCap(List<(int, int)> result)
+        {
+            foreach (var pair in result)
+            {
+                Console.WriteLine($"({pair.Item1}, {pair.Item2})");
+            }
+            Console.WriteLine();
+        }
+
 
         static List<int> DaoNguoc(List<int> ds)
         {
@@ -319,18 +370,16 @@ namespace LAB_1._2._3
             return true;
         }
 
-        static List<List<int>> TimDayConCoTongNguyenTo(List<int> ds)
+        static List<int> TimDayConCoTongNguyenTo(List<int> ds)
         {
-            List<List<int>> result = new List<List<int>>();
+            List<int> result = new List<int>();
             for (int i = 0; i < ds.Count; i++)
             {
                 int sum = 0;
-                List<int> subArray = new List<int>();
                 for (int j = i; j < ds.Count; j++)
                 {
                     sum += ds[j];
-                    subArray.Add(ds[j]);
-                    if (LaSoNguyenTo(sum)) result.Add(new List<int>(subArray));
+                    if (LaSoNguyenTo(sum)) result.Add(sum);
                 }
             }
             return result;
@@ -358,6 +407,11 @@ namespace LAB_1._2._3
             return maxSub;
         }
 
+        static int FindMax(int a, int b)
+        {
+            return a > b ? a : b;
+        }
+
         static int DoDaiDayTangDaiNhat(List<int> ds)
         {
             if (ds.Count == 0) return 0;  
@@ -379,12 +433,265 @@ namespace LAB_1._2._3
             return maxLen;
         }
 
-        static int FindMax(int a, int b)
+        
+
+        static int DoDaiDayGiamDaiNhat(List<int> ds)
         {
-            return a > b ? a : b;  
+            int maxLen = 1, currentLen = 1;
+            for (int i = 1; i < ds.Count; i++)
+            {
+                if (ds[i] < ds[i - 1]) currentLen++;
+                else currentLen = 1;
+
+                maxLen = FindMax(currentLen, maxLen);
+            }
+            return maxLen;
+        }
+
+        static int DemSoLanXuatHienLienTiep(List<int> ds, int x)
+        {
+            int maxCount = 0, currentCount = 0;
+            foreach (int num in ds)
+            {
+                if (num == x) currentCount++;
+                else currentCount = 0;
+
+                maxCount = FindMax(currentCount, maxCount);
+            }
+            return maxCount;
+        }
+
+        static int TimViTriCuoiCung(List<int> ds, int x)
+        {
+            for (int i = ds.Count - 1; i >= 0; i--)
+            {
+                if (ds[i] == x) return i;
+            }
+            return -1;
+        }
+
+        static bool LaMangDoiXung(List<int> ds)
+        {
+            for (int i = 0; i < ds.Count / 2; i++)
+            {
+                if (ds[i] != ds[ds.Count - 1 - i]) return false;
+            }
+            return true;
+        }
+
+        static List<int> NhanMangVoiK(List<int> ds, int k)
+        {
+            List<int> res = new List<int>();
+            foreach (int num in ds) res.Add(num * k);
+            return res;
+        }
+
+        static int TimGiaTriGanNhat(List<int> ds, int x)
+        {
+            int closest = ds[0], minDiff = Math.Abs(ds[0] - x);
+            foreach (int num in ds)
+            {
+                int diff = Math.Abs(num - x);
+                if (diff < minDiff)
+                {
+                    minDiff = diff;
+                    closest = num;
+                }
+            }
+            return closest;
+        }
+
+        static int DemCapPhanTuTongLonHonY(List<int> ds, int y)
+        {
+            int count = 0;
+            for (int i = 0; i < ds.Count; i++)
+            {
+                for (int j = i + 1; j < ds.Count; j++)
+                {
+                    if (ds[i] + ds[j] > y) count++;
+                }
+            }
+            return count;
+        }
+
+        static List<int> TongHaiMang(List<int> ds1, List<int> ds2)
+        {
+            List<int> res = new List<int>();
+            for (int i = 0; i < ds1.Count; i++)
+            {
+                res.Add(ds1[i] + ds2[i]);
+            }
+            return res;
+        }
+
+        static int TimPhanTuKhoangCachLonNhat(List<int> ds, int x)
+        {
+            int maxDist = 0, result = ds[0];
+            foreach (int num in ds)
+            {
+                int dist = Math.Abs(num - x);
+                if (dist > maxDist)
+                {
+                    maxDist = dist;
+                    result = num;
+                }
+            }
+            return result;
+        }
+
+        static List<List<int>> TachMangThanhDayConTangDan(List<int> ds)
+        {
+            List<List<int>> result = new List<List<int>>();
+            List<int> subArray = new List<int>();
+
+            for (int i = 0; i < ds.Count; i++)
+            {
+                if (subArray.Count == 0 || ds[i] > subArray.Last())
+                {
+                    subArray.Add(ds[i]);
+                }
+                else
+                {
+                    result.Add(new List<int>(subArray));
+                    subArray.Clear();
+                    subArray.Add(ds[i]);
+                }
+            }
+
+            if (subArray.Count > 0) result.Add(subArray);
+            return result;
+        }
+
+        static List<int> TimDayConCoTongNhoNhat(List<int> ds)
+        {
+            List<int> minSubArray = new List<int>();
+            int minSum = int.MaxValue;
+
+            for (int i = 0; i < ds.Count; i++)
+            {
+                int sum = 0;
+                List<int> tempSubArray = new List<int>();
+
+                for (int j = i; j < ds.Count; j++)
+                {
+                    sum += ds[j];
+                    tempSubArray.Add(ds[j]);
+
+                    if (sum < minSum)
+                    {
+                        minSum = sum;
+                        minSubArray = new List<int>(tempSubArray);
+                    }
+                }
+            }
+            return minSubArray;
+        }
+
+        static int TongPhanTuChiaHetCho3Va5(List<int> ds)
+        {
+            int sum = 0;
+            foreach (int num in ds)
+            {
+                if (num % 3 == 0 && num % 5 == 0) sum += num;
+            }
+            return sum;
+        }
+
+        static List<int> XoaSoNhoHon0(List<int> ds)
+        {
+            List<int> res = new List<int>();
+            foreach (int num in ds)
+            {
+                if (num >= 0) res.Add(num);
+            }
+            return res;
+        }
+
+        static List<int> BinhPhuongMang(List<int> ds)
+        {
+            List<int> res = new List<int>();
+            foreach (int num in ds) res.Add(num * num);
+            return res;
         }
 
 
+
+        static int TongLonHonTrungBinh(List<int> ds)
+        {
+            int sumResult = 0;
+            int sum = ds.Sum();
+            double avg = (double)sum / ds.Count;
+            foreach(int num in ds)
+            {
+                if(num > avg) sumResult += num;
+            }
+            return sumResult;
+        }
+
+        static int KhoangCachLonNhatGiuaHaiSo0(List<int> ds)
+        {
+            int first = -1, last = -1;
+            for (int i = 0; i < ds.Count; i++)
+            {
+                if (ds[i] == 0)
+                {
+                    if (first == -1) first = i;
+                    last = i;
+                }
+            }
+            return (first != -1 && last != -1) ? last - first : 0;
+        }
+
+
+        static int PhanTuLonNhatViTriLe(List<int> ds)
+        {
+            int max = int.MinValue;
+            for (int i = 1; i < ds.Count; i += 2)
+            {
+                if (ds[i] > max) max = ds[i];
+            }
+            return max;
+        }
+
+        static int PhanTuNhoNhatViTriChan(List<int> ds)
+        {
+            int min = int.MaxValue;
+            for (int i = 0; i < ds.Count; i += 2)
+            {
+                if (ds[i] < min) min = ds[i];
+            }
+            return min;
+        }
+
+        static int DemSoLuongPhanTuLienTiepBangNhau(List<int> ds)
+        {
+            if (ds.Count == 0) return 0;
+
+            int maxCount = 1, currentCount = 1;
+            for (int i = 1; i < ds.Count; i++)
+            {
+                if (ds[i] == ds[i - 1]) currentCount++;
+                else currentCount = 1;
+
+                
+                maxCount = FindMax(currentCount, maxCount);
+            }
+            return maxCount;
+        }
+
+        static List<int> TimTatCaUocSo(List<int> ds)
+        {
+           
+            List<int> factors = new List<int>(XoaCacPTTrungNhau(ds));
+            foreach (int num in ds)
+            {
+                for (int i = 1; i <= Math.Abs(num); i++)
+                {
+                    if (num % i == 0) factors.Add(i);
+                }
+            }
+            return factors.ToList();
+        }
 
 
 
